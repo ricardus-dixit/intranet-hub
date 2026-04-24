@@ -34,6 +34,46 @@ This project has domain-specific skills available. You MUST activate the relevan
 - Use descriptive names for variables and methods. For example, `isRegisteredForDiscounts`, not `discount()`.
 - Check for existing components to reuse before writing a new one.
 
+## Git Commit Convention
+
+- All commit messages MUST follow Conventional Commits.
+- Use this format: `<type>(<scope>): <subject>`
+- `scope` is REQUIRED and MUST be one of:
+  - `api`, `auth`, `config`, `db`, `deps`, `docs`, `jobs`, `mail`, `models`, `policies`, `queue`, `routes`, `tests`, `ui`, `validation`
+- `subject` MUST be lowercase, imperative, and no trailing period.
+- Commit messages MUST be written in Spanish.
+- Keep subject length at 72 characters or fewer.
+- For breaking changes, add `!` after type/scope and include a `BREAKING CHANGE:` footer.
+
+### Allowed Types
+
+- `feat`: New functionality visible to users or developers.
+- `fix`: Bug fix or regression fix.
+- `refactor`: Internal code change without behavior change.
+- `perf`: Performance improvement.
+- `test`: Add or update tests only.
+- `docs`: Documentation-only changes.
+- `style`: Formatting-only changes (no logic changes).
+- `build`: Build system, tooling, or CI dependency updates.
+- `ci`: CI pipeline changes.
+- `chore`: Maintenance tasks that do not fit another type.
+- `revert`: Revert a previous commit.
+
+### Valid Examples
+
+- `feat(auth): agregar expiracion de sesion por inactividad`
+- `fix(api): corregir validacion de cabecera authorization`
+- `refactor(models): simplificar relacion entre usuario y perfil`
+- `test(tests): cubrir caso de bloqueo por intentos fallidos`
+- `chore(deps): actualizar dependencias de desarrollo`
+
+### Invalid Examples
+
+- `update stuff` (missing type and scope)
+- `feat: agregar login` (missing required scope)
+- `Fix(API): Corregir bug.` (wrong case and trailing period)
+- `docs(readme): Updated README` (subject not in Spanish)
+
 ## Verification Scripts
 
 - Do not create verification scripts or tinker when tests cover that functionality and prove they work. Unit and feature tests are more important.
