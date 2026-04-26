@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Users\Tables;
 
+use App\Models\Country;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -19,9 +20,24 @@ class UsersTable
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
+                TextColumn::make('country_id')
+                    ->label('Country')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault:false),
+                TextColumn::make('state_id')
+                    ->label('State')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault:false),
+                TextColumn::make('city_id')
+                    ->label('City')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault:false),
+                TextColumn::make('address')
+                    ->label('Address')
+                    ->toggleable(isToggledHiddenByDefault:false),
+                TextColumn::make('postal_code')
+                    ->label('Postal Code')
+                    ->toggleable(isToggledHiddenByDefault:false),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
