@@ -1,58 +1,124 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📋 Intranet Hub
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> **⚠️ Estado: En Desarrollo**
+> 
+> Este proyecto se encuentra en fase de desarrollo activo. Las funcionalidades están en construcción y pueden cambiar sin previo aviso.
 
-## About Laravel
+## 🎯 ¿Qué es Intranet Hub?
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Intranet Hub es una plataforma web completa para gestionar recursos humanos en empresas. Diseñada para que las organizaciones puedan controlar la jornada laboral de sus empleados, gestionar departamentos, solicitudes de vacaciones y proporciona un portal donde los empleados pueden acceder a información importante.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Funcionalidades Principales
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **👥 Gestión de Empleados** - Registra y organiza tu equipo de trabajo
+- **🏢 Departamentos** - Estructura organizacional flexible por departamentos
+- **⏰ Control de Jornada Laboral** - Sistema de fichaje con entrada y salida
+- **📅 Gestión de Vacaciones** - Los empleados pueden solicitar y ver sus vacaciones
+- **💼 Portal del Empleado** - Acceso a nóminas, vacaciones, horarios y documentos
+- **🏭 Multi-empresa** - Soporta múltiples empresas en una sola plataforma
+- **🔔 Recordatorios** - Notificaciones automáticas para fichajes pendientes
+- **📊 Reportes** - Visualización de datos de asistencia y recursos humanos
 
-## Learning Laravel
+## 🚀 Requisitos Previos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Necesitarás tener instalado en tu computadora:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **PHP** 8.2 o superior
+- **Composer** (gestor de dependencias de PHP)
+- **Node.js** y npm
+- **MySQL** o **PostgreSQL**
+- **Git**
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 📦 Cómo Instalar
 
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
+### 1. Clona el repositorio
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/tu-usuario/intranet-hub.git
+cd intranet-hub
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Instala las dependencias
+```bash
+composer install
+npm install
+```
 
-## Contributing
+### 3. Configura el proyecto
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Configura la base de datos en `.env`
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=intranet_hub
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Code of Conduct
+### 5. Ejecuta las migraciones
+```bash
+php artisan migrate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 6. Inicia el servidor
+```bash
+php artisan serve
+```
 
-## Security Vulnerabilities
+¡Listo! Tu aplicación estará en `http://localhost:8000`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🛠️ Tecnologías Utilizadas
 
-## License
+- **Backend:** [Laravel](https://laravel.com) - Framework PHP moderno y potente
+- **Panel de Control:** [Filament](https://filamentphp.com) - Panel elegante y rápido
+- **Frontend:** [Livewire](https://livewire.laravel.com) + [Alpine.js](https://alpinejs.dev) - Interactividad sin salir de PHP
+- **Base de Datos:** MySQL / PostgreSQL
+- **Autenticación:** Laravel Sanctum
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 📁 Estructura del Proyecto
+
+```
+intranet-hub/
+├── app/
+│   ├── Models/           # Modelos de datos (Empleados, Departamentos, etc.)
+│   ├── Filament/         # Recursos y páginas del panel
+│   └── Http/             # Controladores y middleware
+├── database/
+│   ├── migrations/       # Cambios en la base de datos
+│   └── seeders/          # Datos de prueba
+├── routes/               # Rutas de la aplicación
+├── resources/            # Vistas y archivos de estilo
+└── tests/                # Pruebas automáticas
+```
+
+## 🚦 Estado de Desarrollo
+
+Estas son las características que estamos desarrollando:
+
+- ⏳ Módulo de departamentos
+- ⏳ Control de jornada laboral (fichaje entrada/salida)
+- ⏳ Gestión de vacaciones y solicitudes
+- ⏳ Portal del empleado
+- ⏳ Sistema de nóminas
+- ⏳ Reportes y analítica avanzada
+- ⏳ Sistema de notificaciones y recordatorios
+
+## 🤝 ¿Encontraste un Error?
+
+Si encuentras bugs o tienes sugerencias, por favor abre un [issue](https://github.com/tu-usuario/intranet-hub/issues).
+
+## 📝 Licencia
+
+Este proyecto está bajo la licencia [MIT](LICENSE).
+
+## 👨‍💻 Autor
+
+Ricardo Gauto - [ricardogauto11@gmail.com](mailto:ricardogauto11@gmail.com)
+
+---
+
+**Última actualización:** Abril 2026
