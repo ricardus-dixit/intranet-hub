@@ -54,6 +54,8 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             // ->sidebarFullyCollapsibleOnDesktop();
-            ->sidebarCollapsibleOnDesktop();
+            ->sidebarCollapsibleOnDesktop()
+            ->resourceCreatePageRedirect('index')
+            ->resourceEditPageRedirect('index');
     }
 }
