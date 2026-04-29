@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable(['calendar_id', 'user_id', 'type', 'day_in', 'day_out'])]
 class Timesheet extends Model
 {
+    protected $casts = [
+        'day_in' => 'datetime',
+        'day_out' => 'datetime',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
