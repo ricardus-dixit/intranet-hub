@@ -24,6 +24,7 @@ class PortalPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->default()
             ->id('portal')
             ->path('portal')
             ->login()
