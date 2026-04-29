@@ -53,7 +53,6 @@ class TimesheetsTable
             ->recordActions([
                 EditAction::make(),
                 DeleteAction::make(),
-                DeleteBulkAction::make()
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
