@@ -3,12 +3,13 @@
 namespace App\Filament\Portal\Resources\Timesheets\Pages;
 
 use App\Filament\Portal\Resources\Timesheets\TimesheetResource;
-use App\Models\Calendar;
 use App\Models\Timesheet;
 use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Colors\Color;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Facades\Auth;
 
 use function Illuminate\Support\now;
@@ -57,6 +58,12 @@ class ListTimesheets extends ListRecords
                         'day_in' => now(),
                     ]);
                     $timesheet->save();
+
+                    Notification::make()
+                        ->title('In Work')
+                        ->color('success')
+                        ->icon(Heroicon::Play)
+                        ->send();
                 })
                 ->after(fn () => $this->redirect(request()->header('Referer'))),
 
@@ -69,6 +76,12 @@ class ListTimesheets extends ListRecords
                 ->action(function () use ($lastTimesheet) {
                     $lastTimesheet->day_out = now();
                     $lastTimesheet->save();
+
+                    Notification::make()
+                        ->title('Stop Work')
+                        ->color('warning')
+                        ->icon(Heroicon::Stop)
+                        ->send();
                 })
                 ->after(fn () => $this->redirect(request()->header('Referer'))),
 
@@ -88,6 +101,12 @@ class ListTimesheets extends ListRecords
                         'type' => 'pause',
                         'day_in' => now(),
                     ]);
+
+                    Notification::make()
+                        ->title('In Pause')
+                        ->color('info')
+                        ->icon(Heroicon::Pause)
+                        ->send();
                 })
                 ->after(fn () => $this->redirect(request()->header('Referer'))),
 
@@ -100,6 +119,12 @@ class ListTimesheets extends ListRecords
                 ->action(function () use ($lastTimesheet) {
                     $lastTimesheet->day_out = now();
                     $lastTimesheet->save();
+
+                    Notification::make()
+                        ->title('Stop Pause')
+                        ->color('gray')
+                        ->icon(Heroicon::Stop)
+                        ->send();
                 })
                 ->after(fn () => $this->redirect(request()->header('Referer'))),
 
