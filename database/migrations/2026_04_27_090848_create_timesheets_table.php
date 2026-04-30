@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('calendar_id');
             $table->foreignId('user_id');
             $table->enum('type', ['work', 'pause'])->default('work');
-            $table->dateTime('day_in');
-            $table->dateTime('day_out');
+            $table->dateTime('day_in')->nullable();
+            $table->dateTime('day_out')->nullable();
             $table->timestamps();
         });
     }

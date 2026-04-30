@@ -1,55 +1,57 @@
 <?php
 
-namespace App\Filament\Resources\Users\Tables;
+namespace App\Filament\Resources\Holidays\Tables;
 
-use App\Models\Country;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
-class UsersTable
+class HolidaysTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
-                TextColumn::make('country_id')
-                    ->label('Country')
+                 TextColumn::make('calendar.name')
                     ->searchable()
-                    ->toggleable(isToggledHiddenByDefault:false),
-                TextColumn::make('state_id')
-                    ->label('State')
+                    ->sortable(),
+                TextColumn::make('user.name')
                     ->searchable()
-                    ->toggleable(isToggledHiddenByDefault:false),
-                TextColumn::make('city_id')
-                    ->label('City')
+                    ->sortable(),
+                TextColumn::make('day')
                     ->searchable()
-                    ->toggleable(isToggledHiddenByDefault:false),
-                TextColumn::make('address')
-                    ->label('Address')
-                    ->toggleable(isToggledHiddenByDefault:false),
-                TextColumn::make('postal_code')
-                    ->label('Postal Code')
-                    ->toggleable(isToggledHiddenByDefault:false),
+                    ->date()
+                    ->sortable(),
+                TextColumn::make('type')
+                    ->searchable()
+                    ->badge()
+                    ->color(fn($state): string => match ($state) {
+                        'pending' => 'warning',
+                        'approved' => 'success',
+                        'rejected' => 'danger'
+                    }),
                 TextColumn::make('created_at')
+                    ->searchable()
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->searchable()
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('type')
+                    ->options([
+                        'rejected' => 'Rejected',
+                        'approved' => 'Approved',
+                        'pending' => 'Pending'
+                    ])
             ])
             ->recordActions([
                 EditAction::make(),

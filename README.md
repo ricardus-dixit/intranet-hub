@@ -1,7 +1,7 @@
 # 📋 Intranet Hub
 
 > **⚠️ Estado: En Desarrollo**
-> 
+>
 > Este proyecto se encuentra en fase de desarrollo activo. Las funcionalidades están en construcción y pueden cambiar sin previo aviso.
 
 ## 🎯 ¿Qué es Intranet Hub?
@@ -32,24 +32,28 @@ Necesitarás tener instalado en tu computadora:
 ## 📦 Cómo Instalar
 
 ### 1. Clona el repositorio
+
 ```bash
 git clone https://github.com/tu-usuario/intranet-hub.git
 cd intranet-hub
 ```
 
 ### 2. Instala las dependencias
+
 ```bash
 composer install
 npm install
 ```
 
 ### 3. Configura el proyecto
+
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
 ### 4. Configura la base de datos en `.env`
+
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -60,11 +64,13 @@ DB_PASSWORD=
 ```
 
 ### 5. Ejecuta las migraciones
+
 ```bash
 php artisan migrate
 ```
 
 ### 6. Inicia el servidor
+
 ```bash
 php artisan serve
 ```
@@ -117,8 +123,6 @@ Este proyecto está bajo la licencia [MIT](LICENSE).
 
 ## 👨‍💻 Autor
 
-Ricardo Gauto - [ricardogauto11@gmail.com](mailto:ricardogauto11@gmail.com)
-
----
+## Ismael Catalá - https://github.com/elrincondeisma
 
 **Última actualización:** Abril 2026

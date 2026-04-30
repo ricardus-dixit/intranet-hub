@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Timesheets\Tables;
+namespace App\Filament\Portal\Resources\Timesheets\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -17,9 +17,6 @@ class TimesheetsTable
         return $table
             ->columns([
                 TextColumn::make('calendar.name')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('user.name')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('type')
@@ -56,7 +53,7 @@ class TimesheetsTable
             ])
             ->recordActions([
                 EditAction::make(),
-                DeleteAction::make(),
+                DeleteAction::make(),   
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

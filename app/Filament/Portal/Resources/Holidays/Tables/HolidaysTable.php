@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Timesheets\Tables;
+namespace App\Filament\Portal\Resources\Holidays\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -10,7 +10,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
-class TimesheetsTable
+class HolidaysTable
 {
     public static function configure(Table $table): Table
     {
@@ -22,27 +22,25 @@ class TimesheetsTable
                 TextColumn::make('user.name')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('day')
+                    ->searchable()
+                    ->date()
+                    ->sortable(),
                 TextColumn::make('type')
                     ->searchable()
                     ->badge()
                     ->color(fn($state): string => match ($state) {
-                        'work' => 'success',
-                        'pause' => 'gray'
+                        'pending' => 'warning',
+                        'approved' => 'success',
+                        'rejected' => 'danger'
                     }),
-                TextColumn::make('day_in')
-                    ->searchable()
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('day_out')
-                    ->searchable()
-                    ->dateTime()
-                    ->sortable(),
                 TextColumn::make('created_at')
                     ->searchable()
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->searchable()
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -50,13 +48,14 @@ class TimesheetsTable
             ->filters([
                 SelectFilter::make('type')
                     ->options([
-                        'work' => 'Working',
-                        'pause' => 'In Pause'
+                        'rejected' => 'Rejected',
+                        'approved' => 'Approved',
+                        'pending' => 'Pending'
                     ])
             ])
             ->recordActions([
                 EditAction::make(),
-                DeleteAction::make(),
+                DeleteAction::make()
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
