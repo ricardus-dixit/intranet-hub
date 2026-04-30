@@ -24,7 +24,11 @@ class TimesheetsTable
                     ->sortable(),
                 TextColumn::make('type')
                     ->searchable()
-                    ->badge(),
+                    ->badge()
+                    ->color(fn($state): string => match ($state) {
+                        'work' => 'success',
+                        'pause' => 'gray'
+                    }),
                 TextColumn::make('day_in')
                     ->searchable()
                     ->dateTime()
