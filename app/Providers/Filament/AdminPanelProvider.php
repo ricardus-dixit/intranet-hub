@@ -56,6 +56,7 @@ class AdminPanelProvider extends PanelProvider
             // ->sidebarFullyCollapsibleOnDesktop();
             ->sidebarCollapsibleOnDesktop()
             ->resourceCreatePageRedirect('index')
-            ->resourceEditPageRedirect('index');
+            ->resourceEditPageRedirect('index')
+            ->databaseNotifications();
     }
 }
