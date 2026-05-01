@@ -21,15 +21,15 @@ class UsersTable
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
-                TextColumn::make('country_id')
+                TextColumn::make('country.name')
                     ->label('Country')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault:false),
-                TextColumn::make('state_id')
+                TextColumn::make('state.name')
                     ->label('State')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault:false),
-                TextColumn::make('city_id')
+                TextColumn::make('city.name')
                     ->label('City')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault:false),
