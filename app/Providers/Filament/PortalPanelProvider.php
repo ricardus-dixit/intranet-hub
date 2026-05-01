@@ -59,6 +59,7 @@ class PortalPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->resourceCreatePageRedirect('index')
-            ->resourceEditPageRedirect('index');
+            ->resourceEditPageRedirect('index')
+            ->databaseNotifications();
     }
 }
