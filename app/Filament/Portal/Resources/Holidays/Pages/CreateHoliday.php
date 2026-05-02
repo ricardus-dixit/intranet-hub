@@ -34,7 +34,7 @@ class CreateHoliday extends CreateRecord
             ->icon('heroicon-o-clock')
             ->sendToDatabase($recipient);
 
-        Mail::to($admin)->send(new HolidayPendingMail($dataToSend));
+        Mail::to($admin)->queue(new HolidayPendingMail($dataToSend));
 
         return $data;
     }

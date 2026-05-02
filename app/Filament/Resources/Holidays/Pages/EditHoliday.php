@@ -44,7 +44,7 @@ class EditHoliday extends EditRecord
                 ->success()
                 ->sendToDatabase($recipient);
 
-            Mail::to($record->user->email)->send(new HolidayApprovedMail($dataToSend));
+            Mail::to($record->user->email)->queue(new HolidayApprovedMail($dataToSend));
         }
 
         if ($record->type === 'rejected') {
@@ -55,7 +55,7 @@ class EditHoliday extends EditRecord
                 ->danger()
                 ->sendToDatabase($recipient);
 
-            Mail::to($record->user->email)->send(new HolidayRejectedMail($dataToSend));
+            Mail::to($record->user->email)->queue(new HolidayRejectedMail($dataToSend));
         }
 
         return $record;
