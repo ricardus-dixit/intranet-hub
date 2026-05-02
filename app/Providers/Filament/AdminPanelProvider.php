@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use Filament\Actions\Action;
+use Filament\Enums\UserMenuPosition;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -27,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->profile()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -57,6 +60,7 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop()
             ->resourceCreatePageRedirect('index')
             ->resourceEditPageRedirect('index')
-            ->databaseNotifications();
+            ->databaseNotifications()
+            ->userMenu(position: UserMenuPosition::Sidebar);
     }
 }
