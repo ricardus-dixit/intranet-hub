@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use Filament\Enums\UserMenuPosition;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -32,6 +34,7 @@ class PortalPanelProvider extends PanelProvider
             ->id('portal')
             ->path('portal')
             ->login()
+            ->profile()
             ->colors([
                 'primary' => Color::Indigo,
             ])
@@ -55,10 +58,15 @@ class PortalPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->plugins([
+                FilamentShieldPlugin::make(),
+            ])
             ->authMiddleware([
                 Authenticate::class,
             ])
             ->resourceCreatePageRedirect('index')
-            ->resourceEditPageRedirect('index');
+            ->resourceEditPageRedirect('index')
+            ->databaseNotifications()
+            ->userMenu(position: UserMenuPosition::Sidebar);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Filament\Portal\Resources\Holidays\Pages;
 use App\Filament\Portal\Resources\Holidays\HolidayResource;
 use App\Mail\HolidayPendingMail;
 use App\Models\User;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -25,7 +26,15 @@ class CreateHoliday extends CreateRecord
             'day' => $data['day'],
         ];
 
-        Mail::to($admin)->send(new HolidayPendingMail($dataToSend));
+        $recipient = auth()->user();
+
+        Notification::make()
+            ->title('Holiday Pending')
+            ->body('Your holiday has been submitted and is pending approval.')
+            ->icon('heroicon-o-clock')
+            ->sendToDatabase($recipient);
+
+        Mail::to($admin)->queue(new HolidayPendingMail($dataToSend));
 
         return $data;
     }

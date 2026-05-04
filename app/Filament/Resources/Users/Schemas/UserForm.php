@@ -12,6 +12,7 @@ use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Collection;
+use Spatie\Permission\Models\Role;
 
 class UserForm
 {
@@ -32,6 +33,16 @@ class UserForm
                             ->hiddenOn('edit')
                             ->password()
                             ->required(),
+                    ]),
+                Section::make('Roles & Permissions')
+                    ->schema([
+                        Select::make('roles')
+                            ->label('Assign Roles')
+                            ->multiple()
+                            ->relationship('roles', 'name')
+                            ->options(Role::pluck('name', 'id'))
+                            ->searchable()
+                            ->preload(),
                     ]),
                 Section::make('Address Info')
                     ->schema([
