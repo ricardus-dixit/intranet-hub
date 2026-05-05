@@ -54,4 +54,17 @@ class HolidayResource extends Resource
     {
         return parent::getEloquentQuery()->where('user_id', Auth::user()->id);
     }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return parent::getEloquentQuery()
+            ->where('user_id', Auth::user()->id)
+            ->where('type', 'pending')
+            ->count();
+    }
+
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return 'The number of pending holidays';
+    }
 }
